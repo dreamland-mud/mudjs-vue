@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>test</title>
+</head>
+<body>
+
+  <h3>test</h3>
+
+  <script type="text/javascript">
+    var output = "\u001b[1;37mХрамовая площадь\u001b[0m\u001b[0;37m\n Ты стоишь на Храмовой площади. На севере огромные каменные ступени ведут\nвверх  к  воротам  храма.  На западе - вход в гильдию Монахов. На востоке -\nгостиница   \"Хрюкающий   Кабан\".   Рыночная   площадь  -  центр  Мидгаарда,\nрасположена на юге.\n\n\u001b[1;36m[Выходы: north east south west up]\u001b[0m\u001b[0;37m\n     \u001b[1;32mУдобный стул (chair) стоит прямо в фонтане.\u001b[0m\u001b[0;37m\n     \u001b[1;32mНебольшой фонтан (fountain), сложенный из белого мрамора, установлен здесь.\n\u001b[0m\u001b[0;37m\n\u001b[1;33mСтражник (guard) стоит тут.\n\u001b[0m\u001b[0;37m\u001b[1;33mСферический фиолетовый конь в магентовых яблоках парит над землей.\n\u001b[0m\u001b[0;37m\u001b[1;33mРусалка (Mermaid) сидит на краю фонтана, раздавая задания (quests).\n\u001b[0m\u001b[0;37m\n\r[367\u001b[1;30m/\u001b[0m\u001b[0;37m367\u001b[1;30m/\u001b[0m\u001b[0;37m\u001b[1;37m100%\u001b[0m\u001b[0;37m 238\u001b[1;30m/\u001b[0m\u001b[0;37m238 180\u001b[1;30m/\u001b[0m\u001b[0;37m181 \u001b[1;30m1107\u001b[0m\u001b[0;37m \u001b[1;32m0\u001b[0m\u001b[0;37m][\u001b[0;33mХрамовая площадь\u001b[0m\u001b[0;37m][\u001b[1;33mNESWU\u001b[0m\u001b[0;37m]";
+    console.log(output)
+
+    var exits = getExits (output)
+    console.log(exits)
+
+    var roomName = getRoomName (output)
+    console.log(roomName)
+
+    var info = getRoomInfo (output)
+    console.log(info)
+
+    var directions = parseSpeedRun ('n2e3w4u5d')
+    console.log(directions)
+
+    function getRoomInfo (output) {
+      var mobs = []
+      var items = []
+
+      var line = output.split('\u001b[0m\u001b[0;37m\n\r')[0].split('\u001b[0;37m\n')
+
+      var step = 0
+      for (var i = 2; i < line.length; i++) {
+        if (line[i].indexOf('\u001b[1;32m') !== -1) {
+          line[i].split('[1;32m').forEach(function(item) {
+            if (item.indexOf('\u001b[0m') !== -1) {
+              items.push(item.split('\\u')[0].replace(/\u001b\[0m/, '').replace(/\n/, ''))
+            }
+          })
+          step++
+        } else if (step > 0 && line[i].indexOf('\u001b[1;33m') !== -1) {
+          line[i].replace(/\u001b/, '').split('[1;33m').forEach(function(mob) {
+            if (mob.indexOf('\n') !== -1) {
+              mobs.push(mob.split('\n')[0].replace(/\n/, ''))
+            }
+          })
+        }
+      }
+
+      return {items, mobs}
+    }
+
+    function getRoomName (output) {
+      return output.split('\u001b')[1].substr(6)
+    }
+
+    function getExits (output) {
+      var arr = /\[Выходы: (.*)\]/.exec(output)
+      return arr[1].split(' ')
+    }
+
+    function parseSpeedRun (text) {
+      var isSpeedRun = /^(\d*[neswud])*$/.test(text)
+      if (!isSpeedRun) return null
+      var pathDirections = text.split(/(\d*[neswud])/).filter(function(v) {
+        return v !== ''
+      })
+      var paths = []
+      pathDirections.forEach(function(path) {
+        var pathEntry = path.match(/^(\d)+([neswud])$/)
+        if (pathEntry !== null) {
+          for (var i = 0; i < parseInt(pathEntry[1]); i++) {
+            paths.push(pathEntry[2])
+          }
+        } else {
+          paths.push(path)
+        }
+      })
+      return paths
+    }
+  </script>
+
+</body>
+</html>
