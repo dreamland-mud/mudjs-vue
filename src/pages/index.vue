@@ -772,14 +772,6 @@ $(document).ready(function () {
           case 0x1b:
             ansi += b[i]
             break
-          case 0x3c: // <
-            addText('&lt;')
-            x++
-            break
-          case 0x3e: // >
-            addText('&gt;')
-            x++
-            break
           default:
             if (c >= 0x20) {
               addText(b[i])
@@ -789,9 +781,31 @@ $(document).ready(function () {
       }
     }
     if (txt) {
-      txt += '</span>'
+      if (actualClass !== '') {
+        txt += '</span>'
+      }
+
+      var span = $('<span/>')
+      span.html(txt)
+      // Replace colour "<c c='fgbr'/>" tags coming from the server with spans.
+      span.find('c').each(function (index) {
+        var style = $(this).attr('c')
+        $(this).replaceWith(function () {
+          var result = $('<span/>').append($(this).contents())
+          result.addClass(style)
+          return result
+        })
+      })
+
+      // Ignore all manip tags "<m/>" coming from the server.
+      span.find('m').each(function (index) {
+        $(this).replaceWith(function () {
+          return $('<span/>').append($(this).contents())
+        })
+      })
+
       var atBottom = $('#terminal-wrap').scrollTop() > ($('#terminal').height() - $('#terminal-wrap').height() - 10)
-      var lines = $(txt).appendTo(terminal).text().replace(/\xa0/g, ' ').split('\n')
+      var lines = span.appendTo(terminal).text().replace(/\xa0/g, ' ').split('\n')
       $(lines).each(function () {
         $('.trigger').trigger('text', [
           '' + this
@@ -1006,23 +1020,23 @@ html, body{
 }
 
 /* dark: */
-.fg-ansi-dark-color-0 { color: #2e3436; }
-.fg-ansi-dark-color-1 { color: #cc0000; }
-.fg-ansi-dark-color-2 { color: #4e9a06; }
-.fg-ansi-dark-color-3 { color: #c4a000; }
-.fg-ansi-dark-color-4 { color: #3465a4; }
-.fg-ansi-dark-color-5 { color: #75507b; }
-.fg-ansi-dark-color-6 { color: #06989a; }
-.fg-ansi-dark-color-7 { color: #d3d7cf; }
+.fg-ansi-dark-color-0, .fgdd { color: #2e3436; } /* background  */
+.fg-ansi-dark-color-1, .fgdr { color: #cc0000; } /* r */
+.fg-ansi-dark-color-2, .fgdg { color: #4e9a06; } /* g */
+.fg-ansi-dark-color-3, .fgdy { color: #c4a000; } /* y */
+.fg-ansi-dark-color-4, .fgdb { color: #3465a4; } /* b */
+.fg-ansi-dark-color-5, .fgdm { color: #75507b; } /* m */
+.fg-ansi-dark-color-6, .fgdc { color: #06989a; } /* c */
+.fg-ansi-dark-color-7, .fgdw { color: #d3d7cf; } /* w, d */
 /* bright: */
-.fg-ansi-bright-color-0 { color: #555753; }
-.fg-ansi-bright-color-1 { color: #ef2929; }
-.fg-ansi-bright-color-2 { color: #8ae234; }
-.fg-ansi-bright-color-3 { color: #fce94f; }
-.fg-ansi-bright-color-4 { color: #729fcf; }
-.fg-ansi-bright-color-5 { color: #ad7fa8; }
-.fg-ansi-bright-color-6 { color: #34e2e2; }
-.fg-ansi-bright-color-7 { color: #eeeeec; }
+.fg-ansi-bright-color-0, .fgbd { color: #555753; } /* D */
+.fg-ansi-bright-color-1, .fgbr { color: #ef2929; } /* R */
+.fg-ansi-bright-color-2, .fgbg { color: #8ae234; } /* G */
+.fg-ansi-bright-color-3, .fgby { color: #fce94f; } /* Y */
+.fg-ansi-bright-color-4, .fgbb { color: #729fcf; } /* B */
+.fg-ansi-bright-color-5, .fgbm { color: #ad7fa8; } /* M */
+.fg-ansi-bright-color-6, .fgbc { color: #34e2e2; } /* C */
+.fg-ansi-bright-color-7, .fgbw { color: #eeeeec; } /* W */
 
 .fg-ansi-bold {
 /*    font-weight: bold; */
