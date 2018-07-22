@@ -6,28 +6,6 @@
             <div id="terminal-wrap">
                 <div id="terminal">
                   <pre>
-<span class="fg-ansi-dark-color-7">Connecting....</span>
-<span class="fg-ansi-bold fg-ansi-bright-color-7">Помещение всемирного архива</span>
-<span class="fg-ansi-dark-color-7">
- Окружающую тебя темноту нарушает лишь тусклый желтоватый круг света,
-исходящий от настольной лампы. На столе ты различаешь массивную книгу в
-толстом и тяжелом переплете: ее первые страницы уже успели истлеть, а
-последние еще совсем свежие. Рядом с книгой стоит чернильница с гусиным
-пером.
-</span>
-<span class="fg-ansi-bold fg-ansi-bright-color-6">[Выходы: none]</span>
-<span class="fg-ansi-dark-color-7">
-</span>
-<span class="fg-ansi-bold fg-ansi-bright-color-3">Седой старик (oldman) склонился над Книгой Имен.
-</span>
-<span class="fg-ansi-bold fg-ansi-bright-color-1">&gt;</span>
-<span class="fg-ansi-dark-color-7"> </span>
-<span class="fg-ansi-dark-color-7">Архивариус спрашивает '</span>
-<span class="fg-ansi-dark-color-2">Как твое имя, странник?</span>
-<span class="fg-ansi-dark-color-7">'
-</span>
-<span class="fg-ansi-bold fg-ansi-bright-color-1">&gt;</span>
-<span class="fg-ansi-dark-color-7"> </span>
 </pre>
 </div>
             </div>
