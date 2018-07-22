@@ -41,26 +41,38 @@
         link
         inset-delimiter
       >
-        <q-list-header>Essential Links</q-list-header>
-        <q-item @click.native="openURL('http://quasar-framework.org')">
+        <q-list-header>Полезные ссылки</q-list-header>
+        <q-item @click.native="openURL('https://dreamland.rocks')">
           <q-item-side icon="home" />
-          <q-item-main label="Главная" sublabel="quasar-framework.org" />
+          <q-item-main label="Главная" sublabel="https://dreamland.rocks" />
         </q-item>
-        <q-item @click.native="openURL('https://github.com/quasarframework/')">
+        <q-item @click.native="openURL('https://dreamland.rocks/maps.html')">
+          <q-item-side icon="map" />
+          <q-item-main label="Карты" sublabel="https://dreamland.rocks/maps.html" />
+        </q-item>
+        <q-item @click.native="openURL('https://dreamland.rocks/searcher.html')">
+          <q-item-side icon="search" />
+          <q-item-main label="Поиск вещей" sublabel="https://dreamland.rocks/searcher.html" />
+        </q-item>
+        <q-item @click.native="openURL('https://dreamland.rocks/guide.html')">
+          <q-item-side icon="info" />
+          <q-item-main label="Учебник" sublabel="https://dreamland.rocks/guide.html" />
+        </q-item>
+        <q-item @click.native="openURL('https://dreamland.rocks/dev')">
+          <q-item-side icon="check" />
+          <q-item-main label="Ресурсы строителей" sublabel="https://dreamland.rocks/dev" />
+        </q-item>
+        <q-item @click.native="openURL('https://dreamland.rocks/mudjs/build.html')">
+          <q-item-side icon="check" />
+          <q-item-main label="Стройплощадка" sublabel="https://dreamland.rocks/build.html" />
+        </q-item>
+        <q-item @click.native="openURL('https://github.com/ruffinakoza/mudjs-vue')">
           <q-item-side icon="code" />
-          <q-item-main label="Инфо" sublabel="github.com/quasarframework" />
+          <q-item-main label="GitHub этого проекта" sublabel="https://github.com/ruffinakoza/mudjs-vue" />
         </q-item>
-        <q-item @click.native="openURL('https://discord.gg/5TDhbDg')">
-          <q-item-side icon="chat" />
-          <q-item-main label="Карты" sublabel="https://discord.gg/5TDhbDg" />
-        </q-item>
-        <q-item @click.native="openURL('http://forum.quasar-framework.org')">
-          <q-item-side icon="record_voice_over" />
-          <q-item-main label="База вещей" sublabel="forum.quasar-framework.org" />
-        </q-item>
-        <q-item @click.native="openURL('https://twitter.com/quasarframework')">
-          <q-item-side icon="rss feed" />
-          <q-item-main label="Форум" sublabel="@quasarframework" />
+        <q-item @click.native="openURL('https://dreamland.rocks/mudjs')">
+          <q-item-side icon="check" />
+          <q-item-main label="Другой клиент" sublabel="https://dreamland.rocks/mudjs" />
         </q-item>
       </q-list>
     </q-layout-drawer>
@@ -86,7 +98,7 @@ export default {
   components: {date, QLayout, QToolbar, QToolbarTitle, QBtn, QIcon, QList, QListHeader, QItem, QItemSide, QItemMain, QCard, QCardTitle, QCardMain, QCardMedia, QCardActions, QCardSeparator, QBtnGroup, QChip, QSearch, QSelect, QInnerLoading, QSpinnerGears, QSpinner, QSpinnerAudio, QScrollArea, QChatMessage, QInput, QField, QCarousel, QCarouselSlide, QVideo, QTabs, QTab, QTabPane, QRouteTab, QTable, QTh, QTr, QTd, QTableColumns, rightDrawerComponent},
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
+      leftDrawerOpen: false,
       rightDrawerOpen: this.$q.platform.is.desktop
     }
   },
