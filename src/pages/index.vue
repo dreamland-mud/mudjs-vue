@@ -156,6 +156,9 @@ export default {
     onKeyDown (e) {
       console.log('onKeyDown')
       this.handleControlKeysEvents(e)
+      if (document.activeElement.tagName === 'BODY' && !this.isAltKey && !this.isCtrlKey && !this.isControlsTabActive) {
+        this.$refs.command.focus()
+      }
     },
     onKeyUp (e) {
       console.log('onKeyUp ' + this.inputFocused + ' ' + this.isControlsTabActive + ' ' + this.currentTab)
@@ -372,7 +375,7 @@ export default {
   }
 }
 
-var PROTO_VERSION = 'DreamLand Web Client/1.5'
+var PROTO_VERSION = 'DreamLand Web Client/1.7'
 var wsUrl = 'wss://dreamland.rocks/dreamland',
   msgs = [],
   send = function () {},

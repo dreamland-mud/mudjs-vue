@@ -2,6 +2,12 @@
 
 Автор: Terran (Charlie)
 
+Последняя версия клиента доступна по адресу https://dreamland.rocks/mudjs-vue
+
+См. также проект [mudjs](https://github.com/dreamland-mud/mudjs).
+
+## Разработка
+
 Первичная установка:
 
 * Поставить последнюю стабильную версию Node.js (https://nodejs.org)
