@@ -375,7 +375,7 @@ export default {
   }
 }
 
-var PROTO_VERSION = 'DreamLand Web Client/1.7'
+var PROTO_VERSION = 'DreamLand Web Client/1.8'
 var wsUrl = 'wss://dreamland.rocks/dreamland',
   msgs = [],
   send = function () {},
