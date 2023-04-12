@@ -1,10 +1,16 @@
 # WebSocket and VueJS-based MUD client for DreamLand
 
+
+ЗАМОРОЖЕН в пользу основного клиента [mudjs](https://github.com/dreamland-mud/mudjs).
+
+
+
+
+
 Автор: Terran (Charlie)
 
 Последняя версия клиента доступна по адресу https://dreamland.rocks/mudjs-vue
 
-См. также проект [mudjs](https://github.com/dreamland-mud/mudjs).
 
 ## Разработка
 
